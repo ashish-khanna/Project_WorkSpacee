@@ -1,0 +1,134 @@
+<stop_list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" route_id="880_"
+	route_name="Green Line">
+	<direction direction_id="0" direction_name="Westbound">
+		<stop stop_order="1" stop_id="70210" stop_name="Lechmere - Green Line Inbound"
+			parent_station="place-lech" parent_station_name="Lechmere Station"
+			stop_lat="42.3707733154297" stop_lon="-71.0765380859375" />
+		<stop stop_order="2" stop_id="70208" stop_name="Science Park - Green Line Inbound"
+			parent_station="place-spmnl" parent_station_name="Science Park Station"
+			stop_lat="42.3666648864746" stop_lon="-71.0676651000977" />
+		<stop stop_order="3" stop_id="70206" stop_name="North Station - Green Line Inbound"
+			parent_station="place-north" parent_station_name="North Station"
+			stop_lat="42.3655776977539" stop_lon="-71.0612869262695" />
+		<stop stop_order="4" stop_id="70204" stop_name="Haymarket - Green Line Inbound"
+			parent_station="place-haecl" parent_station_name="Haymarket Station"
+			stop_lat="42.3630218505859" stop_lon="-71.0582885742188" />
+		<stop stop_order="5" stop_id="70202"
+			stop_name="Government Center Station - Green Line Westbound"
+			parent_station="place-gover" parent_station_name="Government Center Station"
+			stop_lat="42.3597068786621" stop_lon="-71.059211730957" />
+		<stop stop_order="6" stop_id="70199"
+			stop_name="Park St Station - Green Line - E Line Berth"
+			parent_station="place-pktrm" parent_station_name="Park St. Station"
+			stop_lat="42.3563957214355" stop_lon="-71.0624237060547" />
+		<stop stop_order="7" stop_id="70159" stop_name="Boylston Station - Outbound"
+			parent_station="place-boyls" parent_station_name="Boylston Station"
+			stop_lat="42.3530197143555" stop_lon="-71.0645904541016" />
+		<stop stop_order="8" stop_id="70157" stop_name="Arlington Station - Outbound"
+			parent_station="place-armnl" parent_station_name="Arlington Station"
+			stop_lat="42.3519020080566" stop_lon="-71.0708923339844" />
+		<stop stop_order="9" stop_id="70155" stop_name="Copley Station - Outbound"
+			parent_station="place-coecl" parent_station_name="Copley Station"
+			stop_lat="42.3499755859375" stop_lon="-71.0774459838867" />
+		<stop stop_order="10" stop_id="70239" stop_name="Prudential Station - Outbound"
+			parent_station="place-prmnl" parent_station_name="Prudential Station"
+			stop_lat="42.3455696105957" stop_lon="-71.0816955566406" />
+		<stop stop_order="11" stop_id="70241" stop_name="Symphony Station - Outbound"
+			parent_station="place-symcl" parent_station_name="Symphony Station"
+			stop_lat="42.3426856994629" stop_lon="-71.0850524902344" />
+		<stop stop_order="12" stop_id="70243" stop_name="Northeastern - Outbound"
+			parent_station="place-nuniv" parent_station_name="Northeastern University Station"
+			stop_lat="42.3404006958008" stop_lon="-71.0888061523438" />
+		<stop stop_order="13" stop_id="70245" stop_name="Museum of Fine Arts - Outbound"
+			parent_station="place-mfa" parent_station_name="Museum of Fine Arts Station"
+			stop_lat="42.3377113342285" stop_lon="-71.0955123901367" />
+		<stop stop_order="14" stop_id="70247" stop_name="Longwood Med Area - Outbound"
+			parent_station="place-lngmd" parent_station_name="Longwood Medical Area Station"
+			stop_lat="42.3359603881836" stop_lon="-71.1000518798828" />
+		<stop stop_order="15" stop_id="70249" stop_name="Brigham Circle - Outbound"
+			parent_station="place-brmnl" parent_station_name="Brigham Circle Station"
+			stop_lat="42.334228515625" stop_lon="-71.104606628418" />
+		<stop stop_order="16" stop_id="70251" stop_name="Fenwood Rd - Outbound"
+			parent_station="place-fenwd" parent_station_name="Fenwood Rd. Station"
+			stop_lat="42.3337059020996" stop_lon="-71.1057281494141" />
+		<stop stop_order="17" stop_id="70253" stop_name="Mission Park - Outbound"
+			parent_station="place-mispk" parent_station_name="Mission Park Station"
+			stop_lat="42.333194732666" stop_lon="-71.1097564697266" />
+		<stop stop_order="18" stop_id="70255" stop_name="Riverway - Outbound"
+			parent_station="place-rvrwy" parent_station_name="Riverway Station"
+			stop_lat="42.3316841125488" stop_lon="-71.111930847168" />
+		<stop stop_order="19" stop_id="70257" stop_name="Back of Hill - Outbound"
+			parent_station="place-bckhl" parent_station_name="Back of the Hill Station"
+			stop_lat="42.3301391601563" stop_lon="-71.1113128662109" />
+		<stop stop_order="20" stop_id="70260" stop_name="Heath St Platform - Green Line E"
+			parent_station="place-hsmnl" parent_station_name="Heath St. Station"
+			stop_lat="42.3286819458008" stop_lon="-71.1105575561523" />
+	</direction>
+	<direction direction_id="1" direction_name="Eastbound">
+		<stop stop_order="1" stop_id="70260" stop_name="Heath St Platform - Green Line E"
+			parent_station="place-hsmnl" parent_station_name="Heath St. Station"
+			stop_lat="42.3286819458008" stop_lon="-71.1105575561523" />
+		<stop stop_order="2" stop_id="70258" stop_name="Back of Hill - Inbound"
+			parent_station="place-bckhl" parent_station_name="Back of the Hill Station"
+			stop_lat="42.3301391601563" stop_lon="-71.1113128662109" />
+		<stop stop_order="3" stop_id="70256" stop_name="Riverway - Inbound"
+			parent_station="place-rvrwy" parent_station_name="Riverway Station"
+			stop_lat="42.3316841125488" stop_lon="-71.111930847168" />
+		<stop stop_order="4" stop_id="70254" stop_name="Mission Park - Inbound"
+			parent_station="place-mispk" parent_station_name="Mission Park Station"
+			stop_lat="42.333194732666" stop_lon="-71.1097564697266" />
+		<stop stop_order="5" stop_id="70252" stop_name="Fenwood Rd - Inbound"
+			parent_station="place-fenwd" parent_station_name="Fenwood Rd. Station"
+			stop_lat="42.3337059020996" stop_lon="-71.1057281494141" />
+		<stop stop_order="6" stop_id="70250" stop_name="Brigham Circle - Inbound"
+			parent_station="place-brmnl" parent_station_name="Brigham Circle Station"
+			stop_lat="42.334228515625" stop_lon="-71.104606628418" />
+		<stop stop_order="7" stop_id="70248" stop_name="Longwood Med Area - Inbound"
+			parent_station="place-lngmd" parent_station_name="Longwood Medical Area Station"
+			stop_lat="42.3359603881836" stop_lon="-71.1000518798828" />
+		<stop stop_order="8" stop_id="70246" stop_name="Museum of Fine Arts - Inbound"
+			parent_station="place-mfa" parent_station_name="Museum of Fine Arts Station"
+			stop_lat="42.3377113342285" stop_lon="-71.0955123901367" />
+		<stop stop_order="9" stop_id="70244" stop_name="Northeastern - Inbound"
+			parent_station="place-nuniv" parent_station_name="Northeastern University Station"
+			stop_lat="42.3404006958008" stop_lon="-71.0888061523438" />
+		<stop stop_order="10" stop_id="70242" stop_name="Symphony Station - Inbound"
+			parent_station="place-symcl" parent_station_name="Symphony Station"
+			stop_lat="42.3426856994629" stop_lon="-71.0850524902344" />
+		<stop stop_order="11" stop_id="70240" stop_name="Prudential Station - Inbound"
+			parent_station="place-prmnl" parent_station_name="Prudential Station"
+			stop_lat="42.3455696105957" stop_lon="-71.0816955566406" />
+		<stop stop_order="12" stop_id="70154" stop_name="Copley Station - Inbound"
+			parent_station="place-coecl" parent_station_name="Copley Station"
+			stop_lat="42.3499755859375" stop_lon="-71.0774459838867" />
+		<stop stop_order="13" stop_id="70156" stop_name="Arlington Station - Inbound"
+			parent_station="place-armnl" parent_station_name="Arlington Station"
+			stop_lat="42.3519020080566" stop_lon="-71.0708923339844" />
+		<stop stop_order="14" stop_id="70158" stop_name="Boylston Station - Inbound"
+			parent_station="place-boyls" parent_station_name="Boylston Station"
+			stop_lat="42.3530197143555" stop_lon="-71.0645904541016" />
+		<stop stop_order="15" stop_id="70200"
+			stop_name="Park St Station - Green Line Eastbound" parent_station="place-pktrm"
+			parent_station_name="Park St. Station" stop_lat="42.3563957214355"
+			stop_lon="-71.0624237060547" />
+		<stop stop_order="16" stop_id="70201"
+			stop_name="Government Center Station - Green Line Eastbound"
+			parent_station="place-gover" parent_station_name="Government Center Station"
+			stop_lat="42.3597068786621" stop_lon="-71.059211730957" />
+		<stop stop_order="17" stop_id="70203" stop_name="Haymarket - Green Line Outbound"
+			parent_station="place-haecl" parent_station_name="Haymarket Station"
+			stop_lat="42.3630218505859" stop_lon="-71.0582885742188" />
+		<stop stop_order="18" stop_id="70205"
+			stop_name="North Station - Green Line Outbound" parent_station="place-north"
+			parent_station_name="North Station" stop_lat="42.3655776977539"
+			stop_lon="-71.0612869262695" />
+		<stop stop_order="19" stop_id="70207"
+			stop_name="Science Park - Green Line Outbound" parent_station="place-spmnl"
+			parent_station_name="Science Park Station" stop_lat="42.3666648864746"
+			stop_lon="-71.0676651000977" />
+		<stop stop_order="20" stop_id="70209" stop_name="Lechmere - Green Line"
+			parent_station="place-lech" parent_station_name="Lechmere Station"
+			stop_lat="42.3707733154297" stop_lon="-71.0765380859375" />
+	</direction>
+</stop_list>

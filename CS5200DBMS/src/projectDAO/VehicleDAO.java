@@ -6,13 +6,21 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 import projectEntity.*;
 
+
+@Path("/vehicle")
 public class VehicleDAO {
 	
 	EntityManagerFactory factory = Persistence.createEntityManagerFactory("CS5200DBMS");
-	
+	/*
 	public void createVehicle(Vehicle newVehicle){
 		EntityManager em = factory.createEntityManager();
 		em.getTransaction().begin();
@@ -22,8 +30,12 @@ public class VehicleDAO {
 	    em.getTransaction().commit();
 		em.close();
 	}
+	*/
+	@GET
+	@Path("/VMAP/{regno}")
+	@Produces(MediaType.APPLICATION_JSON)
 	
-	public List<VehicleShiftMapping> getMappingForVehicle(String regno){
+	public List<VehicleShiftMapping> getMappingForVehicle(@PathParam("regno") String regno){
 		List<VehicleShiftMapping> vehicleShiftMappings = new ArrayList<VehicleShiftMapping>();
 		EntityManager em = factory.createEntityManager();
 		em.getTransaction().begin();
@@ -38,6 +50,25 @@ public class VehicleDAO {
 		return vehicleShiftMappings;
 	}
 
+	@GET
+	@Path("/ALLVEH")
+	@Produces(MediaType.APPLICATION_JSON)
+	
+	public List<Vehicle> getAllVehicle(){
+		List<Vehicle> vehicles = new ArrayList<Vehicle>();
+		EntityManager em = factory.createEntityManager();
+		em.getTransaction().begin();
+
+		Query query = em.createQuery("select vehicle from Vehicle vehicle");
+		vehicles = query.getResultList();
+		
+		em.getTransaction().commit();
+		em.close();		
+		
+		return vehicles;
+	}
+	
+	/*
 	public static void main(String[] args) {
 		VehicleDAO vehicleDAO = new VehicleDAO();
 		Vehicle newVehicle = new Vehicle();
@@ -69,5 +100,5 @@ public class VehicleDAO {
 		//vehicleDAO.createVehicle(newVehicle);
 		
 	}
-
+*/
 }

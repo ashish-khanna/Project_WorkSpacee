@@ -7,9 +7,14 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 import projectEntity.*;
 
+@Path("/vehicleshiftmapping")
 public class VehicleShiftMappingDAO {
 	
 	EntityManagerFactory factory = Persistence.createEntityManagerFactory("CS5200DBMS");
@@ -33,6 +38,9 @@ public class VehicleShiftMappingDAO {
 		em.close();
 	}
 	
+	@GET
+	@Path("/vsm/{shift}")
+	@Produces(MediaType.APPLICATION_JSON)
 	public List<Vehicle> getVehiclesForShift(String shift){
 		List<Vehicle> vehicles = new ArrayList<Vehicle>();
 		EntityManager em = factory.createEntityManager();
@@ -57,7 +65,14 @@ public class VehicleShiftMappingDAO {
 	public static void main(String[] args) {
 		VehicleShiftMappingDAO vehicleMappingDAO = new VehicleShiftMappingDAO();
 		
-		vehicleMappingDAO.createNewMapping("1900", "MA125");
+		//vehicleMappingDAO.createNewMapping("1900", "MA125");
+		
+		List<Vehicle> vl = vehicleMappingDAO.getVehiclesForShift("1800");
+		
+		for(Vehicle v : vl){
+			System.out.println(v.getCapacity());
+		}
+		
 
 	}
 

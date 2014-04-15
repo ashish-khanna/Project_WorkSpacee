@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<stops>
+	<stop>
+		<routeid>880_</routeid>
+		<station_name>Lechmere - Green Line Inbound</station_name>
+		<stopid>70210</stopid>
+		<stoporder>1</stoporder>
+		<directionid>0</directionid>
+		<stoplat>42.3707733154297</stoplat>
+		<stoplon>-71.0765380859375</stoplon>
+	</stop>
+	<stop>
+		<routeid>880_</routeid>
+		<station_name>Prudential Station - Outbound</station_name>
+		<stopid>70239</stopid>
+		<stoporder>10</stoporder>
+		<directionid>0</directionid>
+		<stoplat>42.3455696105957</stoplat>
+		<stoplon>-71.0816955566406</stoplon>
+	</stop>
+	<stop>
+		<routeid>880_</routeid>
+		<station_name>Symphony Station - Outbound</station_name>
+		<stopid>70241</stopid>
+		<stoporder>11</stoporder>
+		<directionid>0</directionid>
+		<stoplat>42.3426856994629</stoplat>
+		<stoplon>-71.0850524902344</stoplon>
+	</stop>
+	<stop>
+		<routeid>880_</routeid>
+		<station_name>Northeastern - Outbound</station_name>
+		<stopid>70243</stopid>
+		<stoporder>12</stoporder>
+		<directionid>0</directionid>
+		<stoplat>42.3404006958008</stoplat>
+		<stoplon>-71.0888061523438</stoplon>
+	</stop>
+	<stop>
+		<routeid>880_</routeid>
+		<station_name>Museum of Fine Arts - Outbound</station_name>
+		<stopid>70245</stopid>
+		<stoporder>13</stoporder>
+		<directionid>0</directionid>
+		<stoplat>42.3377113342285</stoplat>
+		<stoplon>-71.0955123901367</stoplon>
+	</stop>
+	<stop>
+		<routeid>880_</routeid>
+		<station_name>Longwood Med Area - Outbound</station_name>
+		<stopid>70247</stopid>
+		<stoporder>14</stoporder>
+		<directionid>0</directionid>
+		<stoplat>42.3359603881836</stoplat>
+		<stoplon>-71.1000518798828</stoplon>
+	</stop>
+	<stop>
+		<routeid>880_</routeid>
+		<station_name>Brigham Circle - Outbound</station_name>
+		<stopid>70249</stopid>
+		<stoporder>15</stoporder>
+		<directionid>0</directionid>
+		<stoplat>42.334228515625</stoplat>
+		<stoplon>-71.104606628418</stoplon>
+	</stop>
+	<stop>
+		<routeid>880_</routeid>
+		<station_name>Fenwood Rd - Outbound</station_name>
+		<stopid>70251</stopid>
+		<stoporder>16</stoporder>
+		<directionid>0</directionid>
+		<stoplat>42.3337059020996</stoplat>
+		<stoplon>-71.1057281494141</stoplon>
+	</stop>
+	<stop>
+		<routeid>880_</routeid>
+		<station_name>Mission Park - Outbound</station_name>
+		<stopid>70253</stopid>
+		<stoporder>17</stoporder>
+		<directionid>0</directionid>
+		<stoplat>42.333194732666</stoplat>
+		<stoplon>-71.1097564697266</stoplon>
+	</stop>
+	<stop>
+		<routeid>880_</routeid>
+		<station_name>Riverway - Outbound</station_name>
+		<stopid>70255</stopid>
+		<stoporder>18</stoporder>
+		<directionid>0</directionid>
+		<stoplat>42.3316841125488</stoplat>
+		<stoplon>-71.111930847168</stoplon>
+	</stop>
+	<stop>
+		<routeid>880_</routeid>
+		<station_name>Back of Hill - Outbound</station_name>
+		<stopid>70257</stopid>
+		<stoporder>19</stoporder>
+		<directionid>0</directionid>
+		<stoplat>42.3301391601563</stoplat>
+		<stoplon>-71.1113128662109</stoplon>
+	</stop>
+	<stop>
+		<routeid>880_</routeid>
+		<station_name>Science Park - Green Line Inbound</station_name>
+		<stopid>70208</stopid>
+		<stoporder>2</stoporder>
+		<directionid>0</directionid>
+		<stoplat>42.3666648864746</stoplat>
+		<stoplon>-71.0676651000977</stoplon>
+	</stop>
+	<stop>
+		<routeid>880_</routeid>
+		<station_name>Heath St Platform - Green Line E</station_name>
+		<stopid>70260</stopid>
+		<stoporder>20</stoporder>
+		<directionid>0</directionid>
+		<stoplat>42.3286819458008</stoplat>
+		<stoplon>-71.1105575561523</stoplon>
+	</stop>
+	<stop>
+		<routeid>880_</routeid>
+		<station_name>North Station - Green Line Inbound</station_name>
+		<stopid>70206</stopid>
+		<stoporder>3</stoporder>
+		<directionid>0</directionid>
+		<stoplat>42.3655776977539</stoplat>
+		<stoplon>-71.0612869262695</stoplon>
+	</stop>
+	<stop>
+		<routeid>880_</routeid>
+		<station_name>Haymarket - Green Line Inbound</station_name>
+		<stopid>70204</stopid>
+		<stoporder>4</stoporder>
+		<directionid>0</directionid>
+		<stoplat>42.3630218505859</stoplat>
+		<stoplon>-71.0582885742188</stoplon>
+	</stop>
+	<stop>
+		<routeid>880_</routeid>
+		<station_name>Government Center Station - Green Line Westbound
+		</station_name>
+		<stopid>70202</stopid>
+		<stoporder>5</stoporder>
+		<directionid>0</directionid>
+		<stoplat>42.3597068786621</stoplat>
+		<stoplon>-71.059211730957</stoplon>
+	</stop>
+	<stop>
+		<routeid>880_</routeid>
+		<station_name>Park St Station - Green Line - E Line Berth
+		</station_name>
+		<stopid>70199</stopid>
+		<stoporder>6</stoporder>
+		<directionid>0</directionid>
+		<stoplat>42.3563957214355</stoplat>
+		<stoplon>-71.0624237060547</stoplon>
+	</stop>
+	<stop>
+		<routeid>880_</routeid>
+		<station_name>Boylston Station - Outbound</station_name>
+		<stopid>70159</stopid>
+		<stoporder>7</stoporder>
+		<directionid>0</directionid>
+		<stoplat>42.3530197143555</stoplat>
+		<stoplon>-71.0645904541016</stoplon>
+	</stop>
+	<stop>
+		<routeid>880_</routeid>
+		<station_name>Arlington Station - Outbound</station_name>
+		<stopid>70157</stopid>
+		<stoporder>8</stoporder>
+		<directionid>0</directionid>
+		<stoplat>42.3519020080566</stoplat>
+		<stoplon>-71.0708923339844</stoplon>
+	</stop>
+	<stop>
+		<routeid>880_</routeid>
+		<station_name>Copley Station - Outbound</station_name>
+		<stopid>70155</stopid>
+		<stoporder>9</stoporder>
+		<directionid>0</directionid>
+		<stoplat>42.3499755859375</stoplat>
+		<stoplon>-71.0774459838867</stoplon>
+	</stop>
+</stops>

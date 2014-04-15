@@ -1,6 +1,4 @@
-package projectEntity;
-
-import java.sql.Date;
+package projectDAO;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,32 +7,42 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 
 @Entity
-public class Request {
+public class VehicleShiftMapping {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-	private Date shiftDate;
+	
 	private String shift;
-	private String status;
-	@ManyToOne
-	@JoinColumn(name="user_id")
-	private User user;
 	@ManyToOne
 	@JoinColumn(name="vehicle_id")
+	@JsonIgnore
 	private Vehicle vehicle;
 	
 	/**
 	 * 
 	 */
-	public Request() {
+	public VehicleShiftMapping() {
 		super();
 	}
 
-	
+	/**
+	 * @param id
+	 * @param shift
+	 * @param vehicle
+	 */
+	public VehicleShiftMapping(int id, String shift, Vehicle vehicle) {
+		super();
+		this.id = id;
+		this.shift = shift;
+		this.vehicle = vehicle;
+	}
+
 	/**
 	 * @return the id
 	 */
@@ -47,20 +55,6 @@ public class Request {
 	 */
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	/**
-	 * @return the shiftDate
-	 */
-	public Date getShiftDate() {
-		return shiftDate;
-	}
-
-	/**
-	 * @param shiftDate the shiftDate to set
-	 */
-	public void setShiftDate(Date shiftDate) {
-		this.shiftDate = shiftDate;
 	}
 
 	/**
@@ -78,41 +72,11 @@ public class Request {
 	}
 
 	/**
-	 * @return the status
-	 */
-	public String getStatus() {
-		return status;
-	}
-
-	/**
-	 * @param status the status to set
-	 */
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
-	/**
-	 * @return the user
-	 */
-	public User getUser() {
-		return user;
-	}
-
-	/**
-	 * @param user the user to set
-	 */
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-
-	/**
 	 * @return the vehicle
 	 */
 	public Vehicle getVehicle() {
 		return vehicle;
 	}
-
 
 	/**
 	 * @param vehicle the vehicle to set
@@ -122,5 +86,4 @@ public class Request {
 	}
 	
 	
-
 }

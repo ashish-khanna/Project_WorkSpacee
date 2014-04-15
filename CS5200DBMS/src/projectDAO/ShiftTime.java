@@ -1,9 +1,11 @@
-package projectEntity;
+package projectDAO;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 
 @Entity
+@NamedQuery(name="ShiftTime.findAllShift", query="Select s FROM ShiftTime s" )
 public class ShiftTime {
 
 	@Id

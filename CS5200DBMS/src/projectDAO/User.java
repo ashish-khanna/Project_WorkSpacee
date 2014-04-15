@@ -1,4 +1,4 @@
-package projectEntity;
+package projectDAO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,9 +8,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 @Entity
+@NamedQuery(name="User.getUserDetails", query="Select u From User u Where u.email = :uEmail")
 public class User {
 	
 	@Id
@@ -22,6 +26,7 @@ public class User {
 	private String password;
 	private String role;
 	@OneToMany(mappedBy="user", cascade=CascadeType.ALL)
+	
 	private List<Request> requests = new ArrayList<Request>();
 	/**
 	 * 

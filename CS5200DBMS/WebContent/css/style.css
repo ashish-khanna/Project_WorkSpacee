@@ -1,0 +1,20 @@
+.alert {
+    padding: 10px;
+    display: none;
+}
+.btn {
+    margin-bottom: 20px;
+}
+body {
+    padding-top: 50px;
+}
+#main-container {
+    padding: 50px 20px;
+}
+.user-form {
+    padding: 15px;
+}
+
+#searchMBTAContainer {
+	display: none;
+}

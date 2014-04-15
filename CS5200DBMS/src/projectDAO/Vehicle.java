@@ -1,10 +1,14 @@
-package projectEntity;
+package projectDAO;
 
 import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
+import org.codehaus.jackson.annotate.JsonIgnore;
+
+import projectDAO.*;
 
 @Entity
 public class Vehicle {
@@ -15,8 +19,10 @@ public class Vehicle {
 	private int capacity;
 	private String driverName;
 	@OneToMany(mappedBy="vehicle")
+	@JsonIgnore
 	private List<VehicleShiftMapping> vehicleShiftMappings; 
 	@OneToMany(mappedBy="vehicle")
+	@JsonIgnore
 	private List<Request> requests;
 	
 	/**
