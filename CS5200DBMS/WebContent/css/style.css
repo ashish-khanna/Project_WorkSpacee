@@ -18,3 +18,9 @@ body {
 #searchMBTAContainer {
 	display: none;
 }
+
+#map-canvas {
+	box-shadow: 0px 0px 2px #2AA5DF;
+	height: 400px;
+	display: none;
+}

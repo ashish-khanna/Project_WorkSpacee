@@ -41,11 +41,11 @@ public class Mbtaroute {
 
 	@XmlElement(name="stoplat")
 	@Column(name="stop_lat")
-	private float stopLat;
+	private double stopLat;
 
 	@XmlElement(name="stoplon")
 	@Column(name="stop_lon")
-	private float stopLon;
+	private double stopLon;
 
 	@XmlElement(name="stoporder")
 	@Column(name="stop_order")
@@ -95,19 +95,19 @@ public class Mbtaroute {
 		this.stopId = stopId;
 	}
 
-	public float getStopLat() {
+	public double getStopLat() {
 		return this.stopLat;
 	}
 
-	public void setStopLat(float stopLat) {
+	public void setStopLat(double stopLat) {
 		this.stopLat = stopLat;
 	}
 
-	public float getStopLon() {
+	public double getStopLon() {
 		return this.stopLon;
 	}
 
-	public void setStopLon(float stopLon) {
+	public void setStopLon(double stopLon) {
 		this.stopLon = stopLon;
 	}
 

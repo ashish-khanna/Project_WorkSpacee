@@ -71,22 +71,31 @@ public class MBTAClass {
 		
 		String dir = direction.toString();
 		
-		List<String> sourceTimes = searchRoute(mbtaSource.getRouteId(), dir, sourceStation);
+		//List<String> sourceTimes = searchRoute(mbtaSource.getRouteId(), dir, sourceStation, destStation);
 		
+		HashMap<String, Object> data = searchRoute(mbtaSource.getRouteId(), dir, sourceStation, destStation);
+		
+		data.put("sourceLat", mbtaSource.getStopLat());
+		data.put("sourceLong", mbtaSource.getStopLon());
+		data.put("destLat", mbtaDest.getStopLat());
+		data.put("destLong", mbtaDest.getStopLon());
 		em.getTransaction().commit();
 		em.close();
 		
-		HashMap<String, Object> data = new HashMap<String, Object>();
-		data.put("sourceTimes", sourceTimes);
+		//HashMap<String, Object> data = new HashMap<String, Object>();
+		//data.put("sourceTimes", sourceTimes);
 		JsonResponse jsonRes = new JsonResponse("SUCCESS", "", data);
 		return jsonRes;
 	
 	}
 	
-	public List<String> searchRoute(String route, String direction, String soureStation){
+	public HashMap<String, Object> searchRoute(String route, String direction, String soureStation, String destStation){
 		String urlStr = "http://realtime.mbta.com/developer/api/v1/schedulebyroute?";
 		String api_key = "dC9qH0qOL0KntwwZI2ssFg";
 		List<String> epocTimeList = new ArrayList<String>();
+		List<String> destEpocTimeList = new ArrayList<String>();
+		List<String> sourceArrTime = new ArrayList<String>();
+		List<String> destArrTime = new ArrayList<String>();
 		
 		
 		urlStr += "api_key="+api_key;
@@ -115,11 +124,18 @@ public class MBTAClass {
 					
 					if(stopName.equals(soureStation))
 						epocTimeList.add(node.getAttributes().getNamedItem("sch_arr_dt").getNodeValue());
+					if(stopName.equals(destStation))
+						destEpocTimeList.add(node.getAttributes().getNamedItem("sch_arr_dt").getNodeValue());
 			}
 
 			for(String op : epocTimeList) {
 				Date dt = new Date(Long.valueOf(op) * 1000);
-				System.out.println("Time -->"+dt.getHours()+": "+dt.getMinutes()+": "+dt.getSeconds());
+				sourceArrTime.add(dt.getHours()+": "+(dt.getMinutes()+10));
+				//System.out.println("Epoch time-->"+op);
+			}
+			for(String op : destEpocTimeList) {
+				Date dt = new Date(Long.valueOf(op) * 1000);
+				destArrTime.add(dt.getHours()+": "+(dt.getMinutes()+10));
 				//System.out.println("Epoch time-->"+op);
 			}
 				
@@ -135,7 +151,13 @@ public class MBTAClass {
 			e.printStackTrace();
 		} 
 		
-		return epocTimeList;
+		HashMap<String, Object> data = new HashMap<String, Object>();
+		data.put("sourceTimes", sourceArrTime);
+		data.put("destTime", destArrTime);
+		
+		return data;
+		//return arrTime;
+		//return epocTimeList;
 		
 	}
 	
@@ -235,7 +257,7 @@ public class MBTAClass {
 		Mbtaroute m = new Mbtaroute();
 		MBTAClass mbtaObj = new MBTAClass();
 		
-		// mbtaObj.loadMasterData("880_");
+		//mbtaObj.loadMasterData("880_");
 		
 		//mbtaObj.searchRoute();
 		

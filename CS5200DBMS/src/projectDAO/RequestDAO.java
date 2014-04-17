@@ -66,7 +66,7 @@ public class RequestDAO {
 			req.setShiftDate(java.sql.Date.valueOf(shiftDate));
 			req.setShift(shiftTime);
 			 
-			String reqStatus = createRequest(5, req);
+			String reqStatus = createRequest(4, req);
 			
 			HashMap<String, Object> data = new HashMap<String, Object>();
 			data.put("requestStatus", reqStatus);

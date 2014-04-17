@@ -24,19 +24,6 @@ var Template = {};
     };
 
 
-/*
-
- <tr class="info">
-                    <td>
-                        <input type="checkbox">
-                    </td>
-                    <td>04/14/2014</td>
-                    <td>1530</td>
-                    <td>Pending</td>
-                    <td>-</td>
-                </tr>
-
-                */
     Template.getViewReqTemplate = function(data) {
         var container = $('<div>').html($('#viewReqTemplate').html()),
         target = container.find('table#viewReqContainer').find('tbody');

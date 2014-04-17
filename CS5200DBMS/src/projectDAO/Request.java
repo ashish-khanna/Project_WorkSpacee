@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
 
@@ -22,6 +23,9 @@ public class Request {
 	private Date shiftDate;
 	private String shift;
 	private String status;
+	@ManyToOne
+	@JoinColumn(name="drop_id")
+	private DropPoint dropPoint;
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	@JsonIgnore
@@ -123,6 +127,25 @@ public class Request {
 	public void setVehicle(Vehicle vehicle) {
 		this.vehicle = vehicle;
 	}
+
+
+	/**
+	 * @return the dropPoint
+	 */
+	public DropPoint getDropPoint() {
+		return dropPoint;
+	}
+
+
+	/**
+	 * @param dropPoint the dropPoint to set
+	 */
+	public void setDropPoint(DropPoint dropPoint) {
+		this.dropPoint = dropPoint;
+	}
+
+
+	
 	
 	
 

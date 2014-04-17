@@ -11,12 +11,13 @@
 
     <script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 
 
 	<script type="text/html" id="loginTemplate">
 		<div class="alert">
         </div>
-        <form role="form" class="user-form" action="#" id="loginForm">
+        <form class="user-form" action="#" id="loginForm">
             <div class="form-group">
                 <label for="email">Email address</label>
                 <input type="email" class="form-control" id="email" placeholder="Enter email">
@@ -30,7 +31,7 @@
 	</script>
 
     <script type="text/html" id="homeTemplate">
-    	<div class="alert" id="raiseReqError">
+    	<div class="alert">
 	    </div>
         <button class="btn btn-lg btn-primary btn-block" id="raiseReq_btn">Raise Request
             </button>
@@ -42,7 +43,7 @@
     <script type="text/html" id="raiseReqTemplate">
 	    <div class="alert">
 	    </div>
-	<form role="form" class="user-form" action="#" id="raiseReqForm">
+	<form class="user-form" action="#" id="raiseReqForm">
 	    <div class="form-group">
 	        <label for="shiftDate">Date</label>
 	        <input type="date" class="form-control" id="shiftDate">
@@ -85,7 +86,7 @@
 	<script type="text/html" id="searchMBTATemplate">
 		<div class="alert">
 	    </div>
-		<form role="form" class="user-form" action="#" id="searchMBTAForm">
+		<form class="user-form" action="#" id="searchMBTAForm">
 		    <div class="form-group">
 		        <label for="sourceStation">Starting Station</label>
 		        <select class="form-control" id="sourceStation">
@@ -121,11 +122,12 @@
 		    <tbody>
 		    </tbody>
 		</table>
+        <div id="map-canvas"></div>
 	</script>
 </head>
 
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="navbar navbar-inverse navbar-fixed-top" >
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -157,6 +159,7 @@
 
     <script type="text/javascript" src="js/controller.js"></script>
     <script type="text/javascript" src="js/template.js"></script>
+    <script type="text/javascript" src="js/mapHelper.js"></script>
     <script type="text/javascript" src="js/app.js"></script>
 </body>
 

@@ -146,19 +146,22 @@
                 options.successCallback = function(response, textStatus, xhr) {
                     $(alertEl).hide();
                     if (response.status === 'SUCCESS') {
+                        $('#map-canvas').show();
+                       MapHelper.init($('#map-canvas')[0]);
                         var data = response.data;
-                         $('#searchMBTAContainer').show();
+                        $('#searchMBTAContainer').show();
                         $('#searchMBTAContainer').find('.sourceStn').text(sourceStation);
                         $('#searchMBTAContainer').find('.destStn').text(destStation);
                         var target = $('#searchMBTAContainer').find('tbody');
-
+                        target.empty();
                          for(var i=0; i< data.sourceTimes.length; i++)
                         {
                             var thisTime = data.sourceTimes[i],
+                            thisDestTime = data.destTime[i],
                             trEl = $('<tr>');
 
                             $('<td>').text(thisTime).appendTo(trEl);
-                            $('<td>').text('-').appendTo(trEl);
+                            $('<td>').text(thisDestTime).appendTo(trEl);
                             if(i%2)
                             {
                                 trEl.addClass('info');
@@ -166,6 +169,7 @@
 
                             trEl.appendTo(target);
                         }
+                        MapHelper.showDirections(data.sourceLat, data.sourceLong, data.destLat, data.destLong);
 
                     } else {
                         alertEl.addClass('alert-danger').text(response.msg).show();
@@ -192,8 +196,9 @@
     $(document).on('submit', '#raiseReqForm', RESPONSE_HANDLERS["raiseReqTemplate"]["raiseReqForm"]);
     $(document).on('submit', '#searchMBTAForm', RESPONSE_HANDLERS["searchMBTATemplate"]["searchMBTAForm"]);
 
-    $(document).ready(function($) {
+    $(document).ready(function() {
         $('#main-container').empty();
         $('#main-container').html(Template.getLoginTemplate());
     });
+
 })(jQuery);

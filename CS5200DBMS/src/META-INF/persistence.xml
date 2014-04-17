@@ -8,6 +8,7 @@
 	<class>projectDAO.Mbtaroute</class>
 	<class>projectDAO.User</class>
 	<class>projectDAO.ShiftTime</class>
+	<class>projectDAO.DropPoint</class>
 
 	
 	<properties>
