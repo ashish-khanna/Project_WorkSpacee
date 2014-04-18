@@ -1,11 +1,14 @@
 (function($) {
 
     var APP_URLS = {
-        LOGIN: 'login.json',
-        ALL_SHIFTS: 'rest/shifttime/allshift',
+        LOGIN: 'rest/user/userlogin',
+        CHECK_LOGIN: 'rest/user/checkloginstatus',        
+        REGISTER: 'rest/user/createuser',
+        ALL_SHIFTS: 'rest/vehicleshiftmapping/allmappedshift',
         CREATE_REQ: 'rest/request/createreq',
         VIEW_REQ: 'rest/request/allreq',
-        SEARCH_MBTA: 'rest/mbta/searchmbta'
+        SEARCH_MBTA: 'rest/mbta/searchmbta',
+        CANCEL_REQ: 'rest/request/cancelreq'
     },
 
     //set response handler by ID
@@ -32,6 +35,55 @@
                         $('#main-container').append(template);
                     } else {
                         //invalid login
+                        alertEl.addClass('alert-danger').text(response.msg).show();
+                    }
+                };
+
+                options.errorCallback = function(xhr, textStatus, errorThrown) {
+                    alertEl.addClass('alert-danger').text(textStatus).show();
+                };
+
+                Controller.ajax(options);
+
+                return false;
+            }
+        },
+        "menuTemplate": {
+            "register_menu": function(event) {
+                event.preventDefault();
+                $('#main-container').empty();
+                $('#main-container').html(Template.getRegisterTemplate());
+            },
+            "logout_menu": function(event) {
+            },
+            "main_menu": function(event) {
+            }
+                
+        },   
+        "registerTemplate": {
+            "registerForm": function(event) {
+                var theForm = $(this),
+                    alertEl = $('#main-container').find('div.alert'),
+                    options = {},
+                    userObj = {
+                        fname: theForm.find('#fname').val(),
+                        lname: theForm.find('#lname').val(),
+                        email: theForm.find('#email').val(),
+                        password: theForm.find('#password').val(),
+                        role: "Student"
+                    };
+
+                options.url = APP_URLS['REGISTER'];
+                options.data = userObj;
+
+                options.successCallback = function(response, textStatus, xhr) {
+                    $(alertEl).hide();
+                    if (response.status === 'SUCCESS') {
+                         $('#main-container').empty();
+                         $('#main-container').html(Template.getLoginTemplate());
+                         $('#main-container').find('div.alert').addClass('alert-success').text('Registration Successful. Please Login.').show();
+                    } else {
+                        //registration error
                         alertEl.addClass('alert-danger').text(response.msg).show();
                     }
                 };
@@ -125,8 +177,31 @@
             }
         },
         "viewReqTemplate": {
-            "cancelReq_btn": function() {
-
+            "cancelReq_btn": function(event) {
+                if($('#viewReqContainer').find('input:checked').length)
+                   {
+                       var alertEl = $('#main-container').find('div.alert'),
+                       reqIdArr = $.makeArray($('#viewReqContainer').find('input:checked').map(function(index, domEl){
+                            return $(domEl).val();
+                       })).join(',');
+                        Controller.ajax({
+                            url: APP_URLS['CANCEL_REQ'],
+                            reqType: 'POST',
+                            data: {reqIds: reqIdArr},
+                            successCallback: function(response, textStatus, xhr) {
+                                $(alertEl).hide();
+                                if (response.status === 'SUCCESS') {
+                                    $('#main-container').empty();
+                                    $('#main-container').html(Template.getViewReqTemplate(response.data));
+                                } else {
+                                    alertEl.addClass('alert-danger').text(response.status).show();
+                                }
+                            },
+                            errorCallback: function(xhr, textStatus, errorThrown) {
+                                alertEl.addClass('alert-danger').text(textStatus).show();
+                            }
+                        });
+                   } 
             }
         },
         "searchMBTATemplate": {
@@ -190,15 +265,58 @@
     //delegate all event handlers
     $(document).on('click', '#raiseReq_btn', RESPONSE_HANDLERS["homeTemplate"]["raiseReq_btn"]);
     $(document).on('click', '#viewReq_btn', RESPONSE_HANDLERS["homeTemplate"]["viewReq_btn"]);
+    $(document).on('click', '#cancelReq_btn', RESPONSE_HANDLERS["viewReqTemplate"]["cancelReq_btn"]);
     $(document).on('click', '#searchMBTA_btn', RESPONSE_HANDLERS["homeTemplate"]["searchMBTA_btn"]);
 
     $(document).on('submit', '#loginForm', RESPONSE_HANDLERS["loginTemplate"]["loginForm"]);
     $(document).on('submit', '#raiseReqForm', RESPONSE_HANDLERS["raiseReqTemplate"]["raiseReqForm"]);
     $(document).on('submit', '#searchMBTAForm', RESPONSE_HANDLERS["searchMBTATemplate"]["searchMBTAForm"]);
+    $(document).on('submit', '#registerForm', RESPONSE_HANDLERS["registerTemplate"]["registerForm"]);
+
+    $(document).on('click', '#register_menu', RESPONSE_HANDLERS["menuTemplate"]["register_menu"]);
+
+
+
+    function checkLoginStatus(loggedCallback, notLoggedCallback, error){
+        var alertEl = $('#main-container').find('div.alert');
+        Controller.ajax({
+            url: APP_URLS['CHECK_LOGIN'],
+            reqType: 'GET',
+            successCallback: function(response, textStatus, xhr) {
+                if (response.status === 'SUCCESS') {
+                   loggedCallback.call(window, response, textStatus, xhr);
+                }
+                else
+                {
+                    notLoggedCallback.call(window, response, textStatus, xhr);
+                }    
+            },
+            errorCallback: function(xhr, textStatus, errorThrown) {
+                error.call(window, xhr, textStatus, errorThrown);
+            }
+        });
+     }
+
 
     $(document).ready(function() {
-        $('#main-container').empty();
-        $('#main-container').html(Template.getLoginTemplate());
-    });
+        checkLoginStatus (function(response, textStatus, xhr){
+                //logged in
+                var template = Template.getHomeTemplate();
+                $('#main-container').empty();
+                $('#main-container').append(template);
+            }, 
+
+            function(response, textStatus, xhr){ //not logged in
+                $('#main-container').empty();
+                $('#main-container').html(Template.getLoginTemplate());
+            },
+            
+            function(xhr, textStatus, errorThrown){ //error
+                $('#main-container').empty();
+                $('#main-container').html(Template.getLoginTemplate());
+                $('#main-container').find('div.alert').addClass('alert-danger').text(textStatus).show();
+            }
+            );
+        });
 
 })(jQuery);

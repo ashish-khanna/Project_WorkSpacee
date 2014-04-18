@@ -1,5 +1,7 @@
 package projectDAO;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,26 +36,7 @@ public class User {
 	public User() {
 		super();
 	}
-	/**
-	 * @param id
-	 * @param fName
-	 * @param lName
-	 * @param email
-	 * @param password
-	 * @param role
-	 * @param requests
-	 */
-	public User(int id, String fName, String lName, String email,
-			String password, String role, List<Request> requests) {
-		super();
-		this.id = id;
-		this.fName = fName;
-		this.lName = lName;
-		this.email = email;
-		this.password = password;
-		this.role = role;
-		this.requests = requests;
-	}
+
 	/**
 	 * @return the id
 	 */
@@ -114,6 +97,11 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	public void setHashedPassword(String password) {
+		this.password = hashPassword(password);
+	}
+	
 	/**
 	 * @return the role
 	 */
@@ -139,6 +127,39 @@ public class User {
 		this.requests = requests;
 	}
 	
+	private String hashPassword (String password){
+		String SALT = "NorTHEAStern UNIversITY";
+		String pwdSalt = password + SALT;
+		byte[] hashedPassword = "".getBytes();
+		try {
+		      MessageDigest sha = MessageDigest.getInstance("SHA-256");
+		      hashedPassword = sha.digest(pwdSalt.getBytes());
+		      sha.reset();
+		    }
+		    catch (NoSuchAlgorithmException ex){
+		      System.out.println("Error " +ex);
+		    }
+		return hexEncode(hashedPassword);
+	}
 	
+	
+	/**
+	  * The byte[] returned by MessageDigest does not have a nice
+	  * textual representation, so some form of encoding is usually performed.
+	  *
+	  * This implementation follows the example of David Flanagan's book
+	  * "Java In A Nutshell", and converts a byte array into a String
+	  * of hex characters.
+	  */
+	   private String hexEncode( byte[] aInput){
+	    StringBuffer result = new StringBuffer();
+	    char[] digits = {'0', '1', '2', '3', '4','5','6','7','8','9','a','b','c','d','e','f'};
+	    for (int idx = 0; idx < aInput.length; ++idx) {
+	      byte b = aInput[idx];
+	      result.append( digits[ (b&0xf0) >> 4 ] );
+	      result.append( digits[ b&0x0f] );
+	    }
+	    return result.toString();
+	  }  
 
 }

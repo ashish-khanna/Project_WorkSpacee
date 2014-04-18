@@ -1,6 +1,7 @@
 package projectDAO;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -38,6 +39,42 @@ public class VehicleShiftMappingDAO {
 		em.close();
 	}
 	
+	
+	@GET
+	@Path("/allmappedshift")
+	@Produces(MediaType.APPLICATION_JSON)
+	public JsonResponse getAllMappedShift(){
+		EntityManager em = factory.createEntityManager();
+		em.getTransaction().begin();
+
+		List<ShiftTime> shifts = new ArrayList<ShiftTime>();
+		List<String> vsm = new ArrayList<String>();
+		
+		Query query = em.createQuery("SELECT DISTINCT s.shift FROM VehicleShiftMapping s Order by s.shift");
+		vsm = query.getResultList();
+			
+		
+		for(String v : vsm){
+			ShiftTime s = new ShiftTime();
+			s.setShift(v);
+			shifts.add(s);
+		}
+		
+	    em.getTransaction().commit();
+		em.close();
+		
+		DropPointDAO dpDao = new DropPointDAO();
+		List<DropPoint> dplist = dpDao.getAllLocs();
+ 
+		
+		HashMap<String, Object> data = new HashMap<String, Object>();
+		data.put("shifts", shifts);
+		data.put("locations", dplist);
+		JsonResponse jsonRes = new JsonResponse("SUCCESS", "", data);
+		return jsonRes;
+	}
+	
+	
 	@GET
 	@Path("/vsm/{shift}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -65,14 +102,18 @@ public class VehicleShiftMappingDAO {
 	public static void main(String[] args) {
 		VehicleShiftMappingDAO vehicleMappingDAO = new VehicleShiftMappingDAO();
 		
-		//vehicleMappingDAO.createNewMapping("1900", "MA125");
+		//vehicleMappingDAO.createNewMapping("1830", "MA125");
+		vehicleMappingDAO.createNewMapping("1930", "MA500");
+		vehicleMappingDAO.createNewMapping("2000", "MA700");
 		
+		
+		/*
 		List<Vehicle> vl = vehicleMappingDAO.getVehiclesForShift("1800");
 		
 		for(Vehicle v : vl){
 			System.out.println(v.getCapacity());
 		}
-		
+		*/
 
 	}
 

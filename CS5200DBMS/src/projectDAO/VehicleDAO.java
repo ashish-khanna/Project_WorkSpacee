@@ -20,7 +20,7 @@ import projectEntity.*;
 public class VehicleDAO {
 	
 	EntityManagerFactory factory = Persistence.createEntityManagerFactory("CS5200DBMS");
-	/*
+	
 	public void createVehicle(Vehicle newVehicle){
 		EntityManager em = factory.createEntityManager();
 		em.getTransaction().begin();
@@ -30,7 +30,7 @@ public class VehicleDAO {
 	    em.getTransaction().commit();
 		em.close();
 	}
-	*/
+	
 	@GET
 	@Path("/VMAP/{regno}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -68,17 +68,17 @@ public class VehicleDAO {
 		return vehicles;
 	}
 	
-	/*
+	
 	public static void main(String[] args) {
 		VehicleDAO vehicleDAO = new VehicleDAO();
 		Vehicle newVehicle = new Vehicle();
 		List<VehicleShiftMapping> vehicleShiftMappings = new ArrayList<VehicleShiftMapping>();
 		
-		vehicleShiftMappings = vehicleDAO.getMappingForVehicle("MA125");
+		//vehicleShiftMappings = vehicleDAO.getMappingForVehicle("MA125");
 		
-		for(VehicleShiftMapping v : vehicleShiftMappings){
-			System.out.println(v.getShift());
-		}
+		//for(VehicleShiftMapping v : vehicleShiftMappings){
+		//	System.out.println(v.getShift());
+		//}
 		
 		
 		newVehicle.setRegNo("MA125");
@@ -100,5 +100,5 @@ public class VehicleDAO {
 		//vehicleDAO.createVehicle(newVehicle);
 		
 	}
-*/
+
 }

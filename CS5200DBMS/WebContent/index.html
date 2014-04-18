@@ -30,6 +30,30 @@
         </form>
 	</script>
 
+    <script type="text/html" id="registerTemplate">
+        <div class="alert">
+        </div>
+        <form class="user-form" action="#" id="registerForm">
+            <div class="form-group">
+                <label for="fname">First Name</label>
+                <input type="text" class="form-control" id="fname" placeholder="Enter First Name">
+            </div>
+            <div class="form-group">
+                <label for="lname">Last Name</label>
+                <input type="text" class="form-control" id="lname" placeholder="Enter Last Name">
+            </div>
+             <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" class="form-control" id="email" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" placeholder="Password">
+            </div>
+            <button type="submit" class="btn btn-lg btn-primary btn-block">Register</button>
+        </form>
+    </script>
+
     <script type="text/html" id="homeTemplate">
     	<div class="alert">
 	    </div>
@@ -56,10 +80,7 @@
 	    <div class="form-group">
 	        <label for="dropPoint">Drop Point</label>
 	        <select class="form-control" id="dropPoint">
-	            <option value="1">Bolyston st</option>
-	            <option value="2">Longwood st</option>
-	            <option value="3">Smith St</option>
-	            <option value="4">Alphansous St</option>
+	           
 	        </select>
 	    </div>
 	    <button type="submit" class="btn btn-lg btn-primary btn-block">Raise Request</button>
@@ -76,6 +97,7 @@
 		        <th>Shift Time</th>
 		        <th>Status</th>
 		        <th>Vehicle #</th>
+				<th>Drop Point</th>
 		    </thead>
 		    <tbody>
 		    </tbody>
@@ -140,7 +162,7 @@
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Register</a>
+                    <li class="active"><a href="#" id="register_menu">Register</a>
                     </li>
                     <li><a href="#about">About</a>
                     </li>

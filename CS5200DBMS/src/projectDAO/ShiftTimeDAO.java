@@ -65,8 +65,9 @@ public class ShiftTimeDAO {
 	
 	public static void main(String[] args) {
 		
-		/*	ShiftTimeDAO shiftDAO = new ShiftTimeDAO();
+		ShiftTimeDAO shiftDAO = new ShiftTimeDAO();
 	
+		/*
 		List<ShiftTime> shifts = shiftDAO.getAllShift();
 		
 		for(ShiftTime s : shifts){
@@ -79,6 +80,10 @@ public class ShiftTimeDAO {
 		}catch(Exception e){
 			System.out.println("Selected shift does not exists");
 		}
+		*/
+		
+		/*
+		ShiftTime newShift = new ShiftTime();
 		
 		newShift.setShift("1800");
 		shiftDAO.createShift(newShift);
@@ -94,7 +99,13 @@ public class ShiftTimeDAO {
 		shiftDAO.createShift(newShift);
 		newShift.setShift("2100");
 		shiftDAO.createShift(newShift);
-		newShift.setShift("2130");
+		newShift.setShift("2200");
+		shiftDAO.createShift(newShift);
+		newShift.setShift("2230");
+		shiftDAO.createShift(newShift);
+		newShift.setShift("2300");
+		shiftDAO.createShift(newShift);
+		newShift.setShift("2330");
 		shiftDAO.createShift(newShift);
 		*/
 	}
