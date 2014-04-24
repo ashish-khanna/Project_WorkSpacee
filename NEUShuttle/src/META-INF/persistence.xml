@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
+        http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
+	version="1.0">
+
+	<!-- <persistence-unit name="transactions-optional"> <provider>org.datanucleus.api.jpa.PersistenceProviderImpl</provider> 
+		<properties> <property name="datanucleus.NontransactionalRead" value="true"/> 
+		<property name="datanucleus.NontransactionalWrite" value="true"/> <property 
+		name="datanucleus.ConnectionURL" value="appengine"/> </properties> </persistence-unit> -->
+	<persistence-unit name="CS5200DBMS">
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+		<class>com.neushuttle.projectDAO.Vehicle</class>
+		<class>com.neushuttle.projectDAO.Request</class>
+		<class>com.neushuttle.projectDAO.VehicleShiftMapping</class>
+		<class>com.neushuttle.projectDAO.Mbtaroute</class>
+		<class>com.neushuttle.projectDAO.User</class>
+		<class>com.neushuttle.projectDAO.ShiftTime</class>
+		<class>com.neushuttle.projectDAO.DropPoint</class>
+
+		<properties>
+<!-- 			<property name="eclipselink.jdbc.password" value="password" /> -->
+			<property name="eclipselink.jdbc.user" value="root" />
+			<property name="eclipselink.jdbc.driver" value="com.mysql.jdbc.GoogleDriver" />
+			<property name="eclipselink.jdbc.url" value="jdbc:google:mysql://neushuttle:db/cs5200db" />
+			<!-- property name="eclipselink.ddl-generation" value="drop-and-create-tables"/ -->
+			<property name="eclipselink.logging.level" value="ALL" />
+		</properties>
+	</persistence-unit>
+</persistence>
+
+
+
