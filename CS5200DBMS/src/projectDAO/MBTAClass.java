@@ -15,8 +15,11 @@ import java.util.List;
 
 import javax.persistence.*;
 import javax.ws.rs.FormParam;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 import javax.xml.bind.*;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -37,10 +40,34 @@ import projectDAO.Stops;
 @Path("/mbta")
 public class MBTAClass {
 
+	EntityManagerFactory factory = Persistence.createEntityManagerFactory("CS5200DBMS");
+	
+	
+	@GET
+	@Path("getallstop")
+	@Produces(MediaType.APPLICATION_JSON)
+	public JsonResponse getAllStop(){
+		EntityManager em = factory.createEntityManager();
+		em.getTransaction().begin();
+		
+		Query query = em.createQuery("SELECT DISTINCT m.parentStationName FROM Mbtaroute m");
+		List<String> stopLists = query.getResultList();
+		
+		HashMap<String, Object> data = new HashMap<String, Object>();
+		
+		data.put("stopList", stopLists);
+
+		JsonResponse jsonRes = new JsonResponse("SUCCESS", "", data);
+		
+		em.getTransaction().commit();
+		em.close();
+		
+		return jsonRes;
+	}
+	
 	@POST
 	@Path("/searchmbta")
 	public JsonResponse searchNextTrain(@FormParam("sourceStation") String sourceStation, @FormParam("destStation") String destStation){
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("CS5200DBMS");
 		Mbtaroute mbtaSource = new Mbtaroute();
 		EntityManager em = factory.createEntityManager();
 		em.getTransaction().begin();

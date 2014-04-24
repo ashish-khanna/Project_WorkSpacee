@@ -133,7 +133,7 @@ public class RequestDAO {
 				newRequest.setStatus("Confirm");
 				newRequest.setVehicle(vehicle);
 				
-				String mailId =  "gr8.kev@gmail.com";  // newRequest.getUser().getEmail();
+				String mailId =  "contashish23@gmail.com";  // newRequest.getUser().getEmail();
 				String subject = "Request Status - " + newRequest.getStatus().toUpperCase();
 				String msg = "Dear "+ user.getfName().toUpperCase() +","
 						+"\n\n Your request for transport service is Confirmed. Please find details below -" 
@@ -161,11 +161,16 @@ public class RequestDAO {
 	@POST
 	@Path("/cancelreq")
 	public JsonResponse cancelRequest(@FormParam("reqIds") String reqIds,  @Context HttpServletRequest request) {
-		EntityManager em = factory.createEntityManager();
-		em.getTransaction().begin();
+
 
 		HttpSession session =  request.getSession(false);
 		User user = (User) session.getAttribute("USER");
+		
+		if(user != null)
+		{		
+		EntityManager em = factory.createEntityManager();
+		em.getTransaction().begin();
+
 		
 		String [] idArray = reqIds.split(",");
 		
@@ -225,7 +230,12 @@ public class RequestDAO {
 		data.put("requests", req);
 		JsonResponse jsonRes = new JsonResponse("SUCCESS", "", data);
 		return jsonRes;
-		
+		}
+		else{
+			JsonResponse jsonRes = new JsonResponse("ERROR", "Please login", null);
+			return jsonRes;
+			
+		}
 	}
 
 	public static void main(String[] args) {

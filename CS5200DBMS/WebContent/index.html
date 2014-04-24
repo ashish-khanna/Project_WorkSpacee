@@ -105,6 +105,19 @@
 		<button class="btn btn-lg btn-primary btn-block" id="cancelReq_btn">Cancel Request</button>
 	</script>
 
+	<script type="text/html" id="aboutUsTemplate">
+		<div class="alert">
+	    </div>
+		<div class="well">
+            <p><h3> About US </h3>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This app was built by MS graduate students of Northeastern University as a part of database course learning. The app primarily focuses on an on-campus cab service management problem to cater student request and cab availability. 
+			</br></br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;App is integrated with MBTA webservice, Google Map Javascript API to provide various features like searching for alternate travel service with train schedule and route on map. Also app is integrated with JavaMail API to provide alert and update mailer to user on raise CONFIRM request or on clearing some WAITLIST request. App internally uses algorithms which efficiently compute availability in respective cab and assign new request accordingly.
+            </p>
+        </div>
+        
+	</script>
+	
+
 	<script type="text/html" id="searchMBTATemplate">
 		<div class="alert">
 	    </div>
@@ -112,26 +125,13 @@
 		    <div class="form-group">
 		        <label for="sourceStation">Starting Station</label>
 		        <select class="form-control" id="sourceStation">
-                    <option value="Copley Station - Outbound">Copley Station - Outbound</option>
-                    <option value="Lechmere - Green Line Inbound">Lechmere - Green Line Inbound</option>
-                    <option value="Riverway - Outbound">Riverway - Outbound</option>
-                    <option value="Arlington Station - Outbound">Arlington Station - Outbound</option>
-                    <option value="Longwood Med Area - Outbound">Longwood Med Area - Outbound</option>
-                    <option value="Mission Park - Outbound">Mission Park - Outbound</option>
-                    <option value="Symphony Station - Outbound">Symphony Station - Outbound</option>
-                    <option value="Boylston Station - Outbound">Boylston Station - Outbound</option>
+                   
 		        </select>
 		    </div>
 		    <div class="form-group">
 		        <label for="destStation">Destination Station</label>
 		        <select class="form-control" id="destStation">
-		          <option value="Copley Station - Outbound">Copley Station - Outbound</option>
-                    <option value="Lechmere - Green Line Inbound">Lechmere - Green Line Inbound</option>
-                    <option value="Riverway - Outbound">Riverway - Outbound</option>
-                    <option value="Arlington Station - Outbound">Arlington Station - Outbound</option>
-                    <option value="Longwood Med Area - Outbound">Longwood Med Area - Outbound</option>
-                    <option value="Mission Park - Outbound">Mission Park - Outbound</option>
-                    <option value="Northeastern - Outbound">Northeastern - Outbound</option>
+		          
 		        </select>
 		    </div>
 		    <button type="submit" class="btn btn-lg btn-primary btn-block">Search MBTA Route</button>
@@ -162,12 +162,17 @@
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#" id="register_menu">Register</a>
+                    <li id="register_menu"><a href="#" >Register</a>
                     </li>
-                    <li><a href="#about">About</a>
+                    <li id="home_menu"><a href="#">Home</a>
+                    </li>
+                    <li id="aboutUs_menu"><a href="#">About</a>
                     </li>
                     <li><a href="#contact">Contact</a>
                     </li>
+                    <li id="signout_menu"><a href="#">SignOut</a>
+                    </li>
+                    
                 </ul>
             </div>
             <!--/.nav-collapse -->

@@ -24,3 +24,7 @@ body {
 	height: 400px;
 	display: none;
 }
+
+#home_menu, #signout_menu {
+	display: none;
+}

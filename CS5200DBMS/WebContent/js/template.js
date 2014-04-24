@@ -6,6 +6,11 @@ var Template = {};
         return $('#loginTemplate').html();
     };
 
+    Template.getAboutUsTemplate = function() {
+        return $('#aboutUsTemplate').html();
+    };
+
+    
     Template.getHomeTemplate = function() {
         return $('#homeTemplate').html();
     };
@@ -68,8 +73,27 @@ var Template = {};
         return container.children();
     };
 
-    Template.getSearchMBTATemplate = function() {
-        return $('#searchMBTATemplate').html();
+    Template.getSearchMBTATemplate = function(data) {
+    	var container = $('<div>').html($('#searchMBTATemplate').html()),
+        selSourceStnEl = container.find('select#sourceStation'),
+        selDestStnEl = container.find('select#destStation');
+
+        for(var i=0; i< data.stopList.length; i++)
+        {
+            var optEl = $('<option>').attr('value', data.stopList[i]).text(data.stopList[i]);
+            selSourceStnEl.append(optEl);
+            
+        }
+        
+        for(var i=0; i< data.stopList.length; i++)
+        {
+            var optEl = $('<option>').attr('value', data.stopList[i]).text(data.stopList[i]);
+            selDestStnEl.append(optEl);
+            
+        }
+
+        return container.children();
+
     };
 
     Template.getRegisterTemplate = function() {

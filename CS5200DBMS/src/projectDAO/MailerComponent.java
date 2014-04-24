@@ -15,8 +15,8 @@ public class MailerComponent {
 
 	public void sendMail(String receiverMail, String subjectLine, String msg) {
 		 
-		final String username = "contashish23@gmail.com";
-		final String password = "";
+		final String username = "nu.transport.service@gmail.com";
+		final String password = "nu@12345";
  
 		Properties props = new Properties();
 		props.put("mail.smtp.auth", "true");
@@ -34,7 +34,7 @@ public class MailerComponent {
 		try {
  
 			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress("contashish23@gmail.com"));
+			message.setFrom(new InternetAddress("nu.transport.service@gmail.com"));
 			message.setRecipients(Message.RecipientType.TO,
 				InternetAddress.parse(receiverMail));
 			message.setSubject(subjectLine);

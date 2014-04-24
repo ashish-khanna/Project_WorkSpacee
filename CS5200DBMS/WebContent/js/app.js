@@ -2,13 +2,15 @@
 
     var APP_URLS = {
         LOGIN: 'rest/user/userlogin',
-        CHECK_LOGIN: 'rest/user/checkloginstatus',        
+        CHECK_LOGIN: 'rest/user/checkloginstatus',
+        LOGOUT: 'rest/user/userlogout',        
         REGISTER: 'rest/user/createuser',
         ALL_SHIFTS: 'rest/vehicleshiftmapping/allmappedshift',
         CREATE_REQ: 'rest/request/createreq',
         VIEW_REQ: 'rest/request/allreq',
         SEARCH_MBTA: 'rest/mbta/searchmbta',
-        CANCEL_REQ: 'rest/request/cancelreq'
+        CANCEL_REQ: 'rest/request/cancelreq',
+        STOPS_MBTA: 'rest/mbta/getallstop'
     },
 
     //set response handler by ID
@@ -33,14 +35,17 @@
                         var template = Template.getHomeTemplate();
                         $('#main-container').empty();
                         $('#main-container').append(template);
+                        showLoggedMenu(true);
                     } else {
                         //invalid login
                         alertEl.addClass('alert-danger').text(response.msg).show();
+                        showLoggedMenu(false);
                     }
                 };
 
                 options.errorCallback = function(xhr, textStatus, errorThrown) {
                     alertEl.addClass('alert-danger').text(textStatus).show();
+                    showLoggedMenu(false);
                 };
 
                 Controller.ajax(options);
@@ -54,10 +59,30 @@
                 $('#main-container').empty();
                 $('#main-container').html(Template.getRegisterTemplate());
             },
-            "logout_menu": function(event) {
+            "signout_menu": function(event) {
+                Controller.ajax({
+                    url: APP_URLS['LOGOUT'],
+                    reqType: 'POST',
+                    successCallback: function(response, textStatus, xhr) {
+                        $('#main-container').empty();
+                        $('#main-container').html(Template.getLoginTemplate());
+                        showLoggedMenu(false);
+                    },
+                    errorCallback: function(xhr, textStatus, errorThrown) {
+                    	 $('#main-container').empty();
+                         $('#main-container').html(Template.getLoginTemplate());
+                         showLoggedMenu(false);
+                    }
+                });            	
             },
-            "main_menu": function(event) {
-            }
+            "home_menu": function(event) {
+                 $('#main-container').empty();
+                 $('#main-container').append(Template.getHomeTemplate());
+            },
+            "aboutUs_menu": function(event) {
+                $('#main-container').empty();
+                $('#main-container').append(Template.getAboutUsTemplate());
+           }
                 
         },   
         "registerTemplate": {
@@ -137,8 +162,23 @@
                 });
             },
             "searchMBTA_btn": function(event) {
-                $('#main-container').empty();
-                $('#main-container').html(Template.getSearchMBTATemplate());
+            	var alertEl = $('#main-container').find('div.alert');
+                Controller.ajax({
+                    url: APP_URLS['STOPS_MBTA'],
+                    reqType: 'GET',
+                    successCallback: function(response, textStatus, xhr) {
+                        $(alertEl).hide();
+                        if (response.status === 'SUCCESS') {
+                            $('#main-container').empty();
+                            $('#main-container').html(Template.getSearchMBTATemplate(response.data));
+                        } else {
+                            alertEl.addClass('alert-danger').text(response.status).show();
+                        }
+                    },
+                    errorCallback: function(xhr, textStatus, errorThrown) {
+                        alertEl.addClass('alert-danger').text(textStatus).show();
+                    }
+                });
             }
         },
         "raiseReqTemplate": {
@@ -273,7 +313,10 @@
     $(document).on('submit', '#searchMBTAForm', RESPONSE_HANDLERS["searchMBTATemplate"]["searchMBTAForm"]);
     $(document).on('submit', '#registerForm', RESPONSE_HANDLERS["registerTemplate"]["registerForm"]);
 
-    $(document).on('click', '#register_menu', RESPONSE_HANDLERS["menuTemplate"]["register_menu"]);
+    $(document).on('click', '#register_menu a', RESPONSE_HANDLERS["menuTemplate"]["register_menu"]);
+    $(document).on('click', '#aboutUs_menu a', RESPONSE_HANDLERS["menuTemplate"]["aboutUs_menu"]);
+    $(document).on('click', '#home_menu a', RESPONSE_HANDLERS["menuTemplate"]["home_menu"]);
+    $(document).on('click', '#signout_menu a', RESPONSE_HANDLERS["menuTemplate"]["signout_menu"]);
 
 
 
@@ -297,6 +340,22 @@
         });
      }
 
+    
+    function showLoggedMenu(show){
+    	if(show === true)
+    	{
+    		$('#register_menu').hide();
+    		$('#home_menu').show();
+    		$('#signout_menu').show();
+    	}
+    	else
+    	{
+    		$('#register_menu').show();
+    		$('#home_menu').hide();
+    		$('#signout_menu').hide();
+    	}
+    	
+    }
 
     $(document).ready(function() {
         checkLoginStatus (function(response, textStatus, xhr){
@@ -304,17 +363,20 @@
                 var template = Template.getHomeTemplate();
                 $('#main-container').empty();
                 $('#main-container').append(template);
+                showLoggedMenu(true);
             }, 
 
             function(response, textStatus, xhr){ //not logged in
                 $('#main-container').empty();
                 $('#main-container').html(Template.getLoginTemplate());
+                showLoggedMenu(false);
             },
             
             function(xhr, textStatus, errorThrown){ //error
                 $('#main-container').empty();
                 $('#main-container').html(Template.getLoginTemplate());
                 $('#main-container').find('div.alert').addClass('alert-danger').text(textStatus).show();
+                showLoggedMenu(false);
             }
             );
         });

@@ -26,17 +26,26 @@ public class UserDAO {
 	@Produces(MediaType.APPLICATION_JSON)
 	public JsonResponse checkLoginStatus(@Context HttpServletRequest request) {
 		HttpSession session =  request.getSession(false);
-		User user = (User) session.getAttribute("USER");
-		if(user != null)
+		if(session != null)
 		{
-			JsonResponse jsonRes = new JsonResponse("SUCCESS", "", null);
-			return jsonRes;
+			User user = (User) session.getAttribute("USER");
+			if(user != null)
+			{
+				JsonResponse jsonRes = new JsonResponse("SUCCESS", "", null);
+				return jsonRes;
+			}
+			else
+			{
+				JsonResponse jsonRes = new JsonResponse("ERROR", "Please login.", null);
+				return jsonRes;
+			}	
 		}
 		else
 		{
 			JsonResponse jsonRes = new JsonResponse("ERROR", "Please login.", null);
 			return jsonRes;
-		}		
+		}
+			
 	}
 	
 	@POST
@@ -65,7 +74,6 @@ public class UserDAO {
 	    em.getTransaction().commit();
 		em.close();
 	}
-
 
 	@POST
 	@Path("/userlogin")
@@ -97,6 +105,17 @@ public class UserDAO {
 		finally {
 			em.getTransaction().commit();
 			em.close();			
+		}
+	}
+
+	@POST
+	@Path("/userlogout")
+	public void userLogout(@Context HttpServletRequest request) {
+		HttpSession session =  request.getSession(false);
+		if(session != null)
+		{
+			session.removeAttribute("USER");
+			session.invalidate();
 		}
 	}
 
