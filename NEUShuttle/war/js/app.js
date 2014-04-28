@@ -1,3 +1,4 @@
+
 (function($) {
 
     var APP_URLS = {

@@ -29,3 +29,17 @@ body {
 #home_menu, #signout_menu {
 	display: none;
 }
+
+#loader {
+	display: none;
+	position: fixed;
+    width: 40px;
+    border-radius: 2px;
+    color: #2BA7E2;
+    top: 5px;
+    left: 50%;
+    margin-left: -20px;
+    background: #FFF url(https://www.gmfamilyfirst.com/byo/loyalty/common/images/loadingCircle.gif) 4px 4px no-repeat;
+    z-index: 1050;
+    height: 40px;
+}

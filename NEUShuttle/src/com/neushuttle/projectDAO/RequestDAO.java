@@ -139,8 +139,8 @@ public class RequestDAO {
 						+"\n\n Your request for transport service is Confirmed. Please find details below -" 
 						+ "\n\n Cab# - " + newRequest.getVehicle().getRegNo()
 						+ "\n Travel Date - " + newRequest.getShiftDate()
-						+ "\n Travel Shift - " + newRequest.getShift()
-						+ "\n Pick point - Snell Library"
+						+ "\n Travel Time - " + newRequest.getShift()
+						+ "\n Pick Up point - Snell Library"
 						+ "\n\n\n\n\n Thanking You for using NU Cool Shuttle service.";
 				
 				MailerComponent mailer = new MailerComponent();
@@ -206,8 +206,8 @@ public class RequestDAO {
 							+"\n\n Your pending request for transport service is now Confirmed. Please find details below -" 
 							+ "\n\n Cab# - " + reqToModify.getVehicle().getRegNo()
 							+ "\n Travel Date - " + reqToModify.getShiftDate()
-							+ "\n Travel Shift - " + reqToModify.getShift()
-							+ "\n Pick point - Snell Library"
+							+ "\n Travel Time - " + reqToModify.getShift()
+							+ "\n Pick Up point - Snell Library"
 							+ "\n\n\n\n\n Thanking You for using NU Cool Shuttle service.";
 					
 					MailerComponent mailer = new MailerComponent();

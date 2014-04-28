@@ -9,9 +9,11 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.TimeZone;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -97,7 +99,11 @@ public class MBTAClass {
 		Integer direction;
 		
 		if(sourceStop > destStop)
+		{
 			direction = 1;
+			sourceStop = (21 - sourceStop);
+			destStop = (21 - destStop);
+		}
 		else
 			direction = 0;
 		
@@ -105,7 +111,7 @@ public class MBTAClass {
 		
 		//List<String> sourceTimes = searchRoute(mbtaSource.getRouteId(), dir, sourceStation, destStation);
 		
-		HashMap<String, Object> data = searchRoute(mbtaSource.getRouteId(), dir, sourceStation, destStation);
+		HashMap<String, Object> data = searchRoute(mbtaSource.getRouteId(), dir, sourceStation, destStation, sourceStop, destStop);
 		
 		data.put("sourceLat", mbtaSource.getStopLat());
 		data.put("sourceLong", mbtaSource.getStopLon());
@@ -121,7 +127,7 @@ public class MBTAClass {
 	
 	}
 	
-	public HashMap<String, Object> searchRoute(String route, String direction, String soureStation, String destStation){
+	public HashMap<String, Object> searchRoute(String route, String direction, String soureStation, String destStation, int sourceStop, int destStop){
 		String urlStr = "http://realtime.mbta.com/developer/api/v1/schedulebyroute?";
 		String api_key = "dC9qH0qOL0KntwwZI2ssFg";
 		List<String> epocTimeList = new ArrayList<String>();
@@ -153,22 +159,31 @@ public class MBTAClass {
 				Node node =	nodes.item(i);
 					
 					String stopName = node.getAttributes().getNamedItem("stop_name").getNodeValue();
+					int stopNo = Integer.parseInt(node.getAttributes().getNamedItem("stop_sequence").getNodeValue());
 					
-					if(stopName.equals(soureStation))
+					
+//					if(stopName.equals(soureStation))
+//						epocTimeList.add(node.getAttributes().getNamedItem("sch_arr_dt").getNodeValue());
+//					if(stopName.equals(destStation))
+//						destEpocTimeList.add(node.getAttributes().getNamedItem("sch_arr_dt").getNodeValue());
+					if(stopNo == sourceStop)
 						epocTimeList.add(node.getAttributes().getNamedItem("sch_arr_dt").getNodeValue());
-					if(stopName.equals(destStation))
+					if(stopNo == destStop)
 						destEpocTimeList.add(node.getAttributes().getNamedItem("sch_arr_dt").getNodeValue());
+
 			}
 
-			for(String op : epocTimeList) {
-				Date dt = new Date(Long.valueOf(op) * 1000);
-				sourceArrTime.add((dt.getHours()-4)+": "+(dt.getMinutes()+10));
-				//System.out.println("Epoch time-->"+op);
+			
+			Calendar calNewYork = Calendar.getInstance();
+		    calNewYork.setTimeZone(TimeZone.getTimeZone("America/New_York"));
+
+		    for(String op : epocTimeList) {
+				calNewYork.setTimeInMillis(Long.valueOf(op) * 1000);
+				sourceArrTime.add(calNewYork.get(Calendar.HOUR_OF_DAY)+": "+(calNewYork.get(Calendar.MINUTE)+10));
 			}
 			for(String op : destEpocTimeList) {
-				Date dt = new Date(Long.valueOf(op) * 1000);
-				destArrTime.add((dt.getHours()-4)+": "+(dt.getMinutes()+10));
-				//System.out.println("Epoch time-->"+op);
+				calNewYork.setTimeInMillis(Long.valueOf(op) * 1000);
+				destArrTime.add(calNewYork.get(Calendar.HOUR_OF_DAY)+": "+(calNewYork.get(Calendar.MINUTE)+10));
 			}
 				
 		} catch (MalformedURLException e) {
